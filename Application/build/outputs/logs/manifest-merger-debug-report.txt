@@ -1,8 +1,8 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:18:1-46:12
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:18:1-46:12
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:18:1-46:12
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:17:1-48:12
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:17:1-48:12
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:17:1-48:12
 MERGED from [com.android.support:support-v13:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\support-v13-27.0.2.aar\59b42587e2f22a50a67398789c3e265c\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-v4:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\9de7e0a6cc51973b62433c0d7f6b7978\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:cardview-v7:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.0.2.aar\a96174747cf74ec894272f8839390df7\AndroidManifest.xml:17:1-22:12
@@ -15,70 +15,72 @@ MERGED from [com.android.support:support-core-ui:27.0.2] C:\Users\shusi\.gradle\
 MERGED from [com.android.support:support-vector-drawable:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.0.2.aar\167627bd85b1f2c164fa0340015e8f95\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-compat:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\7675314c0b106fc9146e3f2417ede564\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\cc5d7f5f1b147535ebbf1a4c5e953710\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:18:1-46:12
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:18:1-46:12
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:17:1-48:12
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:17:1-48:12
 	package
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:19:5-45
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:18:5-45
 	android:versionName
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:21:5-30
-		INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:20:5-30
+		INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:18:11-69
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:17:11-69
 	android:versionCode
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:20:5-28
-		INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:19:5-28
+		INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
 uses-permission#android.permission.CAMERA
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:24:5-65
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:23:5-65
 	android:name
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:24:22-62
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:23:22-62
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:25:5-81
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:24:5-81
 	android:name
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:25:22-78
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:24:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:26:5-80
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:25:5-80
 	android:name
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:26:22-77
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:25:22-77
 uses-feature#android.hardware.camera
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:29:5-60
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:28:5-60
 	android:name
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:29:19-57
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:28:19-57
 uses-feature#android.hardware.camera.raw
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:30:5-64
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:29:5-64
 	android:name
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:30:19-61
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:29:19-61
 application
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:32:5-44:19
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:31:5-46:19
 	android:label
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:33:9-41
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:33:9-41
+	android:largeHeap
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:36:9-33
 	android:icon
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:34:9-45
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:34:9-45
 	android:allowBackup
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:32:18-44
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:32:9-35
 	android:theme
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:35:9-45
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:35:9-45
 activity#com.example.android.camera2raw.CameraActivity
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:37:9-43:20
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:38:9-45:20
 	android:label
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:38:19-51
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:40:13-45
 	android:name
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:37:19-79
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:39:13-73
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:39:13-42:29
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:41:13-44:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:40:17-69
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:42:17-69
 	android:name
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:40:25-66
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:42:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:41:17-77
+ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:43:17-77
 	android:name
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml:41:27-74
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml:43:27-74
 uses-sdk
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
 MERGED from [com.android.support:support-v13:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\support-v13-27.0.2.aar\59b42587e2f22a50a67398789c3e265c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-v13:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\support-v13-27.0.2.aar\59b42587e2f22a50a67398789c3e265c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-v4:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\9de7e0a6cc51973b62433c0d7f6b7978\AndroidManifest.xml:20:5-44
@@ -103,13 +105,13 @@ MERGED from [com.android.support:support-compat:27.0.2] C:\Users\shusi\.gradle\c
 MERGED from [com.android.support:support-compat:27.0.2] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\7675314c0b106fc9146e3f2417ede564\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\cc5d7f5f1b147535ebbf1a4c5e953710\AndroidManifest.xml:20:5-22:41
 MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\shusi\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\cc5d7f5f1b147535ebbf1a4c5e953710\AndroidManifest.xml:20:5-22:41
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
-INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
+INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
-		ADDED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\shusi\Desktop\android-Camera2Raw-master\Application\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shusi\Cosmic_Ray_Detector\Application\src\main\AndroidManifest.xml

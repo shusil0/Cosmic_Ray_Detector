@@ -24,6 +24,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -43,7 +44,6 @@ import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureFailure;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
-import android.hardware.camera2.DngCreator;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
@@ -58,6 +58,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v13.app.FragmentCompat;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -69,6 +70,7 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
@@ -89,6 +91,9 @@ import java.util.TreeMap;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static android.hardware.camera2.DngCreator.MAX_THUMBNAIL_DIMENSION;
+
 
 /**
  * A fragment that demonstrates use of the Camera2 API to capture RAW and JPEG photos.
@@ -170,6 +175,11 @@ public class Camera2RawFragment extends Fragment
      */
     private static final int MAX_PREVIEW_HEIGHT = 1080;
 
+
+    // Time period between next picture click
+    private final int HOW_OFTEN = 10;
+
+
     /**
      * Tag for the {@link Log}.
      */
@@ -201,6 +211,7 @@ public class Camera2RawFragment extends Fragment
      * onCreate or onConfigurationChanged is not called as the view dimensions remain the same,
      * but the orientation of the has changed, and thus the preview rotation must be updated.
      */
+
     private OrientationEventListener mOrientationListener;
 
     /**
@@ -552,13 +563,13 @@ public class Camera2RawFragment extends Fragment
 
                 if (jpegBuilder != null) {
                     jpegBuilder.setResult(result);
-                    sb.append("Saving JPEG as: ");
+                    //   sb.append("Saving JPEG as: ");
                     sb.append(jpegBuilder.getSaveLocation());
                 }
                 if (rawBuilder != null) {
                     rawBuilder.setResult(result);
                     if (jpegBuilder != null) sb.append(", ");
-                    sb.append("Saving RAW as: ");
+                    //    sb.append("Saving RAW as: ");
                     sb.append(rawBuilder.getSaveLocation());
                 }
 
@@ -609,10 +620,16 @@ public class Camera2RawFragment extends Fragment
         return inflater.inflate(R.layout.fragment_camera2_basic, container, false);
     }
 
+
+    Button button;
+
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         view.findViewById(R.id.picture).setOnClickListener(this);
         view.findViewById(R.id.info).setOnClickListener(this);
+        button = (Button) view.findViewById(R.id.picture);
+
+
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
 
         // Setup a new OrientationEventListener.  This is used to handle rotation events like a
@@ -631,6 +648,8 @@ public class Camera2RawFragment extends Fragment
 
     @Override
     public void onResume() {
+
+
         super.onResume();
         startBackgroundThread();
         openCamera();
@@ -673,11 +692,15 @@ public class Camera2RawFragment extends Fragment
         }
     }
 
+
     @Override
     public void onClick(View view) {
+
         switch (view.getId()) {
             case R.id.picture: {
-                takePicture();
+
+                scheduleTakePicture();
+
                 break;
             }
             case R.id.info: {
@@ -687,11 +710,24 @@ public class Camera2RawFragment extends Fragment
                             .setMessage(R.string.intro_message)
                             .setPositiveButton(android.R.string.ok, null)
                             .show();
+
                 }
                 break;
             }
         }
     }
+
+
+    public void scheduleTakePicture() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                takePicture();          // this method will contain your almost-finished HTTP calls
+                handler.postDelayed(this, HOW_OFTEN);
+            }
+        }, HOW_OFTEN);
+    }
+
 
     /**
      * Sets up state related to camera that is needed before opening a {@link CameraDevice}.
@@ -712,7 +748,7 @@ public class Camera2RawFragment extends Fragment
 
                 // We only use a camera that supports RAW in this sample.
                 if (!contains(characteristics.get(
-                                CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES),
+                        CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES),
                         CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES_RAW)) {
                     continue;
                 }
@@ -769,11 +805,13 @@ public class Camera2RawFragment extends Fragment
      */
     @SuppressWarnings("MissingPermission")
     private void openCamera() {
+
         if (!setUpCameraOutputs()) {
             return;
         }
         if (!hasAllPermissionsGranted()) {
             requestCameraPermissions();
+
             return;
         }
 
@@ -938,8 +976,8 @@ public class Camera2RawFragment extends Fragment
 
             // Here, we create a CameraCaptureSession for camera preview.
             mCameraDevice.createCaptureSession(Arrays.asList(surface,
-                            mJpegImageReader.get().getSurface(),
-                            mRawImageReader.get().getSurface()), new CameraCaptureSession.StateCallback() {
+                    mJpegImageReader.get().getSurface(),
+                    mRawImageReader.get().getSurface()), new CameraCaptureSession.StateCallback() {
                         @Override
                         public void onConfigured(CameraCaptureSession cameraCaptureSession) {
                             synchronized (mCameraStateLock) {
@@ -997,7 +1035,7 @@ public class Camera2RawFragment extends Fragment
         if (!mNoAFRun) {
             // If there is a "continuous picture" mode available, use it, otherwise default to AUTO.
             if (contains(mCharacteristics.get(
-                            CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES),
+                    CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES),
                     CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)) {
                 builder.set(CaptureRequest.CONTROL_AF_MODE,
                         CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
@@ -1007,21 +1045,22 @@ public class Camera2RawFragment extends Fragment
             }
         }
 
+        // Shusil commented out builder.set
         // If there is an auto-magical flash control mode available, use it, otherwise default to
         // the "on" mode, which is guaranteed to always be available.
         if (contains(mCharacteristics.get(
-                        CameraCharacteristics.CONTROL_AE_AVAILABLE_MODES),
+                CameraCharacteristics.CONTROL_AE_AVAILABLE_MODES),
                 CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)) {
-            builder.set(CaptureRequest.CONTROL_AE_MODE,
-                    CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
+            //     builder.set(CaptureRequest.CONTROL_AE_MODE,
+            //        CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
         } else {
-            builder.set(CaptureRequest.CONTROL_AE_MODE,
-                    CaptureRequest.CONTROL_AE_MODE_ON);
+            //  builder.set(CaptureRequest.CONTROL_AE_MODE,
+            //         CaptureRequest.CONTROL_AE_MODE_ON);
         }
 
         // If there is an auto-magical white balance control mode available, use it.
         if (contains(mCharacteristics.get(
-                        CameraCharacteristics.CONTROL_AWB_AVAILABLE_MODES),
+                CameraCharacteristics.CONTROL_AWB_AVAILABLE_MODES),
                 CaptureRequest.CONTROL_AWB_MODE_AUTO)) {
             // Allow AWB to run auto-magically if this device supports this
             builder.set(CaptureRequest.CONTROL_AWB_MODE,
@@ -1160,15 +1199,20 @@ public class Camera2RawFragment extends Fragment
      * auto-white-balance to converge.
      */
     private void takePicture() {
+
+        Log.i("Picture taken", "step 1 ");
+
         synchronized (mCameraStateLock) {
             mPendingUserCaptures++;
-
+            // mState = STATE_PREVIEW;
+            Log.i("Picture taken", "" + mState);
             // If we already triggered a pre-capture sequence, or are in a state where we cannot
             // do this, return immediately.
             if (mState != STATE_PREVIEW) {
                 return;
             }
-
+            Log.i("Picture taken", "step 3 ");
+            Log.i("states", "" + mState);
             try {
                 // Trigger an auto-focus run if camera is capable. If the camera is already focused,
                 // this should do nothing.
@@ -1207,12 +1251,24 @@ public class Camera2RawFragment extends Fragment
      * <p/>
      * Call this only with {@link #mCameraStateLock} held.
      */
+
     private void captureStillPictureLocked() {
+        Log.i("Picture: ", "captureStillPictureLocked, step 1");
         try {
             final Activity activity = getActivity();
             if (null == activity || null == mCameraDevice) {
+                if (null == activity) {
+                    Log.i("Picture", "null activity");
+                }
+                if (null == mCameraDevice) {
+                    Log.i("Picture", "null mCameraDevice");
+                }
+
                 return;
             }
+
+            Log.i("Picture: ", "captureStillPictureLocked, step 2");
+
             // This is the CaptureRequest.Builder that we use to take a picture.
             final CaptureRequest.Builder captureBuilder =
                     mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
@@ -1331,6 +1387,7 @@ public class Camera2RawFragment extends Fragment
          * The image to save.
          */
         private final Image mImage;
+
         /**
          * The file we save the image into.
          */
@@ -1367,18 +1424,24 @@ public class Camera2RawFragment extends Fragment
             mReader = reader;
         }
 
+
+
+
+
         @Override
         public void run() {
+
             boolean success = false;
             int format = mImage.getFormat();
             switch (format) {
                 case ImageFormat.JPEG: {
                     ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
+
                     byte[] bytes = new byte[buffer.remaining()];
+
                     buffer.get(bytes);
                     FileOutputStream output = null;
                     try {
-
                         // Decoding byte array to create a bitmap
                         Bitmap image = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
@@ -1440,12 +1503,12 @@ public class Camera2RawFragment extends Fragment
                         }
 
                         if (resizedImage.isRecycled() == true) {
-                            // If successfully recycled, then no need to save
+                        // If successfully recycled, then no need to save
                             success = false;
                             Log.i("Picture ", "Deleted");
                         } else {
                             success = true;
-                            // If no need to delete, which means above threshold ----> Save
+                         // If no need to delete, which means above threshold ----> Save
                             Log.i("Picture ", "Saved");
                         }
                     } catch (IOException e) {
@@ -1457,29 +1520,10 @@ public class Camera2RawFragment extends Fragment
                     break;
                 }
 
-
-
-/* Not using Raw Sensor
-                case ImageFormat.RAW_SENSOR: {
-                    DngCreator dngCreator = new DngCreator(mCharacteristics, mCaptureResult);
-                    FileOutputStream output = null;
-                    try {
-                        output = new FileOutputStream(mFile);
-                        dngCreator.writeImage(output, mImage);
-                        success = true;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } finally {
-                        mImage.close();
-                        closeOutput(output);
-                    }
-                    break;
-                }
                 default: {
                     Log.e(TAG, "Cannot save image, unexpected image format:" + format);
                     break;
                 }
-                */
             }
 
             // Decrement reference count to allow ImageReader to be closed to free up resources.
@@ -1487,21 +1531,202 @@ public class Camera2RawFragment extends Fragment
 
             // If saving the file succeeded, update MediaStore.
             if (success) {
-                MediaScannerConnection.scanFile(mContext, new String[]{mFile.getPath()},
-                /*mimeTypes*/null, new MediaScannerConnection.MediaScannerConnectionClient() {
-                    @Override
-                    public void onMediaScannerConnected() {
-                        // Do nothing
-                    }
 
-                    @Override
-                    public void onScanCompleted(String path, Uri uri) {
-                        Log.i(TAG, "Scanned " + path + ":");
-                        Log.i(TAG, "-> uri=" + uri);
-                    }
-                });
+
+                Intent mediaScannerIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                Uri fileContentUri = Uri.fromFile(mFile); // With 'permFile' being the File object
+                mediaScannerIntent.setData(fileContentUri);
+                mContext.sendBroadcast(mediaScannerIntent); // With 'this' being the context, e.g. the activity
+
+
+                MediaScannerConnection.scanFile(mContext, new String[]{
+                                mFile.getPath()},
+                /*mimeTypes*/null, new MediaScannerConnection.MediaScannerConnectionClient() {
+                            @Override
+                            public void onMediaScannerConnected() {
+                                // Do nothing
+                            }
+
+                            @Override
+                            public void onScanCompleted(String path, Uri uri) {
+                                Log.i(TAG, "Scanned " + path + ":");
+                                Log.i(TAG, "-> uri=" + uri);
+                            }
+                        });
+
+
             }
         }
+
+
+        private static final int BYTES_PER_RGB_PIX = 3; // bytes per pixel
+
+        // Copied from library
+        public ByteBuffer getThumbnail(Image pixels) {
+            if (pixels == null) {
+                throw new IllegalArgumentException("Null argument to setThumbnail");
+            }
+
+            int format = pixels.getFormat();
+            if (format != ImageFormat.YUV_420_888) {
+                //   throw new IllegalArgumentException("Unsupported Image format " + format);
+                Log.i("format", "" + (format));
+
+            }
+
+            int width = pixels.getWidth();
+            int height = pixels.getHeight();
+/*
+            if (width > MAX_THUMBNAIL_DIMENSION || height > MAX_THUMBNAIL_DIMENSION) {
+                throw new IllegalArgumentException("Thumbnail dimensions width,height (" + width +
+                        "," + height + ") too large, dimensions must be smaller than " +
+                        MAX_THUMBNAIL_DIMENSION);
+            }
+*/
+            ByteBuffer rgbBuffer = convertToRGB(pixels);
+            //nativeSetThumbnail(rgbBuffer, width, height);
+
+            return rgbBuffer;
+        }
+
+
+        @NonNull
+        public ByteBuffer getThumbnail(@NonNull Bitmap pixels) {
+            if (pixels == null) {
+                throw new IllegalArgumentException("Null argument to setThumbnail");
+            }
+
+            int width = pixels.getWidth();
+            int height = pixels.getHeight();
+
+            if (width > MAX_THUMBNAIL_DIMENSION || height > MAX_THUMBNAIL_DIMENSION) {
+                throw new IllegalArgumentException("Thumbnail dimensions width,height (" + width +
+                        "," + height + ") too large, dimensions must be smaller than " +
+                        MAX_THUMBNAIL_DIMENSION);
+            }
+
+            ByteBuffer rgbBuffer = convertToRGB(pixels);
+            // nativeSetThumbnail(rgbBuffer, width, height);
+
+
+            return rgbBuffer;
+        }
+
+
+        private void yuvToRgb(byte[] yuvData, int outOffset, /*out*/byte[] rgbOut) {
+            final int COLOR_MAX = 255;
+
+            float y = yuvData[0] & 0xFF;  // Y channel
+            float cb = yuvData[1] & 0xFF; // U channel
+            float cr = yuvData[2] & 0xFF; // V channel
+
+            // convert YUV -> RGB (from JFIF's "Conversion to and from RGB" section)
+            float r = y + 1.402f * (cr - 128);
+            float g = y - 0.34414f * (cb - 128) - 0.71414f * (cr - 128);
+            float b = y + 1.772f * (cb - 128);
+
+            // Log.i("rgb value: ", "rValue: "+ r + " gValue: "+ g+ " bValue: "+ b);
+
+
+            // clamp to [0,255]
+            rgbOut[outOffset] = (byte) Math.max(0, Math.min(COLOR_MAX, r));
+            rgbOut[outOffset + 1] = (byte) Math.max(0, Math.min(COLOR_MAX, g));
+            rgbOut[outOffset + 2] = (byte) Math.max(0, Math.min(COLOR_MAX, b));
+        }
+
+        /**
+         * Convert a single {@link Color} pixel to RGB.
+         */
+        private void colorToRgb(int color, int outOffset, /*out*/byte[] rgbOut) {
+            rgbOut[outOffset] = (byte) Color.red(color);
+            rgbOut[outOffset + 1] = (byte) Color.green(color);
+            rgbOut[outOffset + 2] = (byte) Color.blue(color);
+            // Discards Alpha
+        }
+
+        /**
+         * Generate a direct RGB {@link ByteBuffer} from a YUV420_888 {@link Image}.
+         */
+        private ByteBuffer convertToRGB(Image yuvImage) {
+            // TODO: Optimize this with renderscript intrinsic.
+            int width = yuvImage.getWidth();
+            int height = yuvImage.getHeight();
+            ByteBuffer buf = ByteBuffer.allocateDirect(BYTES_PER_RGB_PIX * width * height);
+
+            Image.Plane yPlane = yuvImage.getPlanes()[0];
+            Image.Plane uPlane = yuvImage.getPlanes()[1];
+            Image.Plane vPlane = yuvImage.getPlanes()[2];
+
+            ByteBuffer yBuf = yPlane.getBuffer();
+            ByteBuffer uBuf = uPlane.getBuffer();
+            ByteBuffer vBuf = vPlane.getBuffer();
+
+            yBuf.rewind();
+            uBuf.rewind();
+            vBuf.rewind();
+
+            int yRowStride = yPlane.getRowStride();
+            int vRowStride = vPlane.getRowStride();
+            int uRowStride = uPlane.getRowStride();
+
+            int yPixStride = yPlane.getPixelStride();
+            int vPixStride = vPlane.getPixelStride();
+            int uPixStride = uPlane.getPixelStride();
+
+            byte[] yuvPixel = {0, 0, 0};
+            byte[] yFullRow = new byte[yPixStride * (width - 1) + 1];
+            byte[] uFullRow = new byte[uPixStride * (width / 2 - 1) + 1];
+            byte[] vFullRow = new byte[vPixStride * (width / 2 - 1) + 1];
+            byte[] finalRow = new byte[BYTES_PER_RGB_PIX * width];
+            for (int i = 0; i < height; i++) {
+                int halfH = i / 2;
+                yBuf.position(yRowStride * i);
+                yBuf.get(yFullRow);
+                uBuf.position(uRowStride * halfH);
+                uBuf.get(uFullRow);
+                vBuf.position(vRowStride * halfH);
+                vBuf.get(vFullRow);
+                for (int j = 0; j < width; j++) {
+                    int halfW = j / 2;
+                    yuvPixel[0] = yFullRow[yPixStride * j];
+                    yuvPixel[1] = uFullRow[uPixStride * halfW];
+                    yuvPixel[2] = vFullRow[vPixStride * halfW];
+                    yuvToRgb(yuvPixel, j * BYTES_PER_RGB_PIX, /*out*/finalRow);
+                }
+                buf.put(finalRow);
+            }
+
+            yBuf.rewind();
+            uBuf.rewind();
+            vBuf.rewind();
+            buf.rewind();
+            return buf;
+        }
+
+        /**
+         * Generate a direct RGB {@link ByteBuffer} from a {@link Bitmap}.
+         */
+        private ByteBuffer convertToRGB(Bitmap argbBitmap) {
+            // TODO: Optimize this.
+            int width = argbBitmap.getWidth();
+            int height = argbBitmap.getHeight();
+            ByteBuffer buf = ByteBuffer.allocateDirect(BYTES_PER_RGB_PIX * width * height);
+
+            int[] pixelRow = new int[width];
+            byte[] finalRow = new byte[BYTES_PER_RGB_PIX * width];
+            for (int i = 0; i < height; i++) {
+                argbBitmap.getPixels(pixelRow, /*offset*/0, /*stride*/width, /*x*/0, /*y*/i,
+                    /*width*/width, /*height*/1);
+                for (int j = 0; j < width; j++) {
+                    colorToRgb(pixelRow[j], j * BYTES_PER_RGB_PIX, /*out*/finalRow);
+                }
+                buf.put(finalRow);
+            }
+
+            buf.rewind();
+            return buf;
+        }
+
 
         /**
          * Builder class for constructing {@link ImageSaver}s.
@@ -1577,6 +1802,7 @@ public class Camera2RawFragment extends Fragment
             }
         }
     }
+
 
     // Utility classes and methods:
     // *********************************************************************************************
@@ -1707,7 +1933,7 @@ public class Camera2RawFragment extends Fragment
      * @return The optimal {@code Size}, or an arbitrary one if none were big enough
      */
     private static Size chooseOptimalSize(Size[] choices, int textureViewWidth,
-            int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio) {
+                                          int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio) {
         // Collect the supported resolutions that are at least as big as the preview Surface
         List<Size> bigEnough = new ArrayList<>();
         // Collect the supported resolutions that are smaller than the preview Surface
@@ -1718,7 +1944,7 @@ public class Camera2RawFragment extends Fragment
             if (option.getWidth() <= maxWidth && option.getHeight() <= maxHeight &&
                     option.getHeight() == option.getWidth() * h / w) {
                 if (option.getWidth() >= textureViewWidth &&
-                    option.getHeight() >= textureViewHeight) {
+                        option.getHeight() >= textureViewHeight) {
                     bigEnough.add(option);
                 } else {
                     notBigEnough.add(option);

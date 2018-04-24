@@ -1,52 +1,16 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\shusi\\Desktop\\android-Camera2Raw-master\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\shusi\\Desktop\\android-Camera2Raw-master\\Application\\src\\main\\res\\values\\template-styles.xml",
-                    "from": {
-                        "startLines": "24,20,22,27,29,34",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "768,651,713,849,878,1075",
-                        "endLines": "24,20,22,27,32,39",
-                        "endColumns": "51,60,53,27,12,12",
-                        "endOffsets": "815,707,762,872,1069,1348"
-                    },
-                    "to": {
-                        "startLines": "465,1773,1774,1782,1879,1883",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "41508,128145,128205,128930,136666,136862",
-                        "endLines": "465,1773,1774,1782,1882,1888",
-                        "endColumns": "50,59,52,26,12,12",
-                        "endOffsets": "41554,128200,128253,128952,136857,137135"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\shusi\\Desktop\\android-Camera2Raw-master\\Application\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "17,16,18",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "689,645,739",
-                        "endColumns": "49,43,80",
-                        "endOffsets": "734,684,815"
-                    },
-                    "to": {
-                        "startLines": "445,456,457",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "40511,40817,40861",
-                        "endColumns": "49,43,80",
-                        "endOffsets": "40556,40856,40937"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\shusi\\Desktop\\android-Camera2Raw-master\\Application\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "16",
                         "startColumns": "4",
-                        "startOffsets": "645",
+                        "startOffsets": "661",
                         "endColumns": "95",
-                        "endOffsets": "736"
+                        "endOffsets": "752"
                     },
                     "to": {
                         "startLines": "1513",
@@ -57,13 +21,13 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\shusi\\Desktop\\android-Camera2Raw-master\\Application\\src\\main\\res\\values\\template-dimens.xml",
+                    "source": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\src\\main\\res\\values\\template-dimens.xml",
                     "from": {
                         "startLines": "28,24,23,22,21,20,29",
                         "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "959,880,836,791,748,706,1029",
+                        "startOffsets": "987,904,859,813,769,726,1058",
                         "endColumns": "69,42,43,44,42,41,67",
-                        "endOffsets": "1024,918,875,831,786,743,1092"
+                        "endOffsets": "1052,942,898,853,807,763,1121"
                     },
                     "to": {
                         "startLines": "363,364,365,366,367,368,392",
@@ -71,25 +35,6 @@
                         "startOffsets": "35460,35530,35573,35617,35662,35705,37178",
                         "endColumns": "69,42,43,44,42,41,67",
                         "endOffsets": "35525,35568,35612,35657,35700,35742,37241"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\shusi\\Desktop\\android-Camera2Raw-master\\Application\\src\\main\\res\\values\\base-strings.xml",
-                    "from": {
-                        "startLines": "18,19",
-                        "startColumns": "4,4",
-                        "startOffsets": "647,695",
-                        "endLines": "18,28",
-                        "endColumns": "47,13",
-                        "endOffsets": "690,946"
-                    },
-                    "to": {
-                        "startLines": "444,446",
-                        "startColumns": "4,4",
-                        "startOffsets": "40463,40561",
-                        "endLines": "444,455",
-                        "endColumns": "47,13",
-                        "endOffsets": "40506,40812"
                     }
                 },
                 {
@@ -131,6 +76,42 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "17,16,18",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "706,661,757",
+                        "endColumns": "49,43,80",
+                        "endOffsets": "751,700,833"
+                    },
+                    "to": {
+                        "startLines": "445,456,457",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "40511,40817,40861",
+                        "endColumns": "49,43,80",
+                        "endOffsets": "40556,40856,40937"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\src\\main\\res\\values\\template-styles.xml",
+                    "from": {
+                        "startLines": "24,20,22,27,29,34",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "792,671,735,876,907,1109",
+                        "endLines": "24,20,22,27,32,39",
+                        "endColumns": "51,60,53,27,12,12",
+                        "endOffsets": "839,727,784,899,1101,1387"
+                    },
+                    "to": {
+                        "startLines": "465,1773,1774,1782,1879,1883",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "41508,128145,128205,128930,136666,136862",
+                        "endLines": "465,1773,1774,1782,1882,1888",
+                        "endColumns": "50,59,52,26,12,12",
+                        "endOffsets": "41554,128200,128253,128952,136857,137135"
+                    }
+                },
+                {
                     "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\ab9141782a0aa1c28ca9a3c7327e79d2\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10",
@@ -164,6 +145,25 @@
                         "endLines": "29,30,31,32,346,347,348,492,1506,1509,1512",
                         "endColumns": "60,61,61,63,58,56,53,12,12,12,12",
                         "endOffsets": "2080,2142,2204,2268,34219,34276,34330,43330,107689,107815,107943"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\src\\main\\res\\values\\base-strings.xml",
+                    "from": {
+                        "startLines": "18,19",
+                        "startColumns": "4,4",
+                        "startOffsets": "665,714",
+                        "endLines": "18,28",
+                        "endColumns": "47,13",
+                        "endOffsets": "708,974"
+                    },
+                    "to": {
+                        "startLines": "444,446",
+                        "startColumns": "4,4",
+                        "startOffsets": "40463,40561",
+                        "endLines": "444,455",
+                        "endColumns": "47,13",
+                        "endOffsets": "40506,40812"
                     }
                 }
             ]

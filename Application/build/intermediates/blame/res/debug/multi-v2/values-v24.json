@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\shusi\\Desktop\\android-Camera2Raw-master\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\ab9141782a0aa1c28ca9a3c7327e79d2\\res\\values-v24\\values-v24.xml",

@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Application/Application.iml" filepath="$PROJECT_DIR$/Application/Application.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android-Camera2Raw-master.iml" filepath="$PROJECT_DIR$/android-Camera2Raw-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cosmic_Ray_Detector.iml" filepath="$PROJECT_DIR$/Cosmic_Ray_Detector.iml" />
     </modules>
   </component>
 </project>
