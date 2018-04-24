@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\78e054247fcf2be0af1f92b9e924bf22\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\8b825c690bbd571896a1d80f07e7a9a9\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\7675314c0b106fc9146e3f2417ede564\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\10c937e3260ba366e8a23669fc0976a6\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

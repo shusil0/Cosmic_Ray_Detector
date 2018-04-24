@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\shusi\\Cosmic_Ray_Detector\\Application\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\cardview-v7-27.0.2.aar\\a96174747cf74ec894272f8839390df7\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\cardview-v7-27.0.2.aar\\5363c59d8cea41065859d9de299ed67e\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\78e054247fcf2be0af1f92b9e924bf22\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\shusi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\8b825c690bbd571896a1d80f07e7a9a9\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,19,32,33,34,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
