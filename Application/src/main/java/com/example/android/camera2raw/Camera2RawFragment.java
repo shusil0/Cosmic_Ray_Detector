@@ -25,6 +25,9 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Point;
@@ -1375,9 +1378,76 @@ public class Camera2RawFragment extends Fragment
                     buffer.get(bytes);
                     FileOutputStream output = null;
                     try {
-                        output = new FileOutputStream(mFile);
-                        output.write(bytes);
-                        success = true;
+
+                        // Decoding byte array to create a bitmap
+                        Bitmap image = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+                        // Resizing bitmap to make the image smaller
+                        Bitmap resizedImage = Bitmap.createScaledBitmap(image, 120, 120, false);
+
+                        // Initializing all color values
+                        int redmax = 0, greenmax = 0, bluemax = 0, redx = 0, bluex = 0, greenx = 0, redy = 0, bluey = 0, greeny = 0;
+
+                        long startTime = System.nanoTime();
+                        // Timer starts here ^^
+
+                        // Going through every pixels
+                        for (int y = 0; y < resizedImage.getHeight(); y++) { // Height
+                            for (int x = 0; x < resizedImage.getWidth(); x++) {    // Width
+                                int imagePixel = resizedImage.getPixel(x, y);
+                                int rValue = Color.red(imagePixel);
+                                int bValue = Color.blue(imagePixel);
+                                int gValue = Color.green(imagePixel);
+
+                                if (rValue > redmax) {
+                                    redmax = rValue;
+                                    redx = x;
+                                    redy = y;
+
+                                }
+                                if (bValue > bluemax) {
+                                    bluemax = bValue;
+                                    bluex = x;
+                                    bluey = y;
+                                }
+
+                                if (gValue > greenmax) {
+                                    greenmax = gValue;
+                                    greenx = x;
+                                    greeny = y;
+                                }
+                            }
+                        }
+
+
+                        //This is where the time used is calculated
+                        long endTime = System.nanoTime();
+                        long duration = (endTime - startTime);
+                        long seconds = (duration / 1000000000);
+
+                        Log.i("Picture max red value", "R: " + redmax + " x: " + redx + " y: " + redy);
+                        Log.i("Picture max green value", "G: " + greenmax + " x: " + greenx + " y: " + greeny);
+                        Log.i("Picture max blue value", "B: " + bluemax + " x: " + bluex + " y: " + bluey);
+                        Log.i("Picture x and y value", "XY: " + " x: " + resizedImage.getWidth() + " y: " + resizedImage.getHeight());
+
+                        // If above the threshold:
+                        if (redmax > 80 || greenmax > 80 || bluemax > 80) {
+                            System.out.print("White");
+                            output = new FileOutputStream(mFile);
+                            output.write(bytes);
+                        } else {
+                            resizedImage.recycle(); //Delete
+                        }
+
+                        if (resizedImage.isRecycled() == true) {
+                            // If successfully recycled, then no need to save
+                            success = false;
+                            Log.i("Picture ", "Deleted");
+                        } else {
+                            success = true;
+                            // If no need to delete, which means above threshold ----> Save
+                            Log.i("Picture ", "Saved");
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     } finally {
@@ -1386,6 +1456,10 @@ public class Camera2RawFragment extends Fragment
                     }
                     break;
                 }
+
+
+
+/* Not using Raw Sensor
                 case ImageFormat.RAW_SENSOR: {
                     DngCreator dngCreator = new DngCreator(mCharacteristics, mCaptureResult);
                     FileOutputStream output = null;
@@ -1405,6 +1479,7 @@ public class Camera2RawFragment extends Fragment
                     Log.e(TAG, "Cannot save image, unexpected image format:" + format);
                     break;
                 }
+                */
             }
 
             // Decrement reference count to allow ImageReader to be closed to free up resources.
